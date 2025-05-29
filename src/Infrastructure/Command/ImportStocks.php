@@ -34,6 +34,19 @@ final class ImportStocks extends Command
 
     protected function configure(): void
     {
+        $this->setDescription(
+            <<<'EOF'
+            Import of stocks using CSV formatted input:
+                — Supports dry-run by default, to force writing records to DB use --force flag
+                — Supports different sources of input local file, remote file and CSV formatted string --mode | -m option can be used for configuration
+                
+            Example:
+                - php bin/console csv-import:stocks /path/to/file | dry run using local file
+                - php bin/console csv-import:stocks /path/to/file --force | forced storing launch using local file
+                - php bin/console csv-import:stocks http://localhost:80/path/to/file --force | forced storing launch using remote file
+                - php bin/console csv-import:stocks http://localhost:80/path/to/file  | dry run  using remote file
+            EOF,
+        );
         $this->addArgument(self::INPUT_ARGUMENT_NAME, InputArgument::REQUIRED);
         $this->addOption(self::FORCE_OPTION_NAME, null, InputOption::VALUE_NONE);
         $this->addOption(
