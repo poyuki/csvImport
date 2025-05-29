@@ -1,0 +1,21 @@
+App\Application\Service\Data\StockData:
+    productCode:
+        - NotBlank: ~
+        - Length:
+              max: 10
+    productName:
+        - NotBlank: ~
+        - Length:
+              max: 50
+    productDescription:
+        - NotBlank: ~
+        - Length:
+              max: 255
+    stock:
+        - NotBlank: ~
+        - Regex:
+              pattern: '/^\d+$/'
+    cost:
+        - NotBlank: ~
+        - Regex:
+              pattern: '/^\d+(\.\d+)?$/'
