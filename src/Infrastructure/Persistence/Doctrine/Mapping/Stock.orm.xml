@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="App\Domain\Model\Stock" table="tblProductData">
+
+        <unique-constraints>
+            <unique-constraint name="strProductCode" columns="strProductCode"/>
+        </unique-constraints>
+
+        <id name="productDataId" column="intProductDataId" type="integer">
+            <generator/>
+            <options>
+                <option name="unsigned">true</option>
+            </options>
+        </id>
+        <field name="productName" column="strProductName" length="50"/>
+        <field name="productDesc" column="strProductDesc" length="255"/>
+        <field name="productCode" column="strProductCode" length="10"/>
+        <field name="addedAt" column="dtmAdded" type="datetime" nullable="true"/>
+        <field name="discontinuedAt" column="dtmDiscontinued" type="datetime" nullable="true"/>
+        <field name="timestamp"
+               column="stmTimestamp"
+               type="datetime"
+               column-definition="DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+               insertable="false"
+               updatable="false"
+        />
+        <field name="stock" column="intStock" type="integer">
+            <options>
+                <option name="unsigned">true</option>
+            </options>
+        </field>
+        <field name="cost" type="decimal" column="decCost" precision="10" scale="2">
+            <options>
+                <option name="comment">Cost in GBP</option>
+            </options>
+        </field>
+    </entity>
+</doctrine-mapping>
